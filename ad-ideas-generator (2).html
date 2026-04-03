@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ad Ideas — Ecom Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080b09;
+    --surface: #0f1410;
+    --surface2: #161d17;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(34,197,94,0.3);
+    --green: #22c55e;
+    --green-dim: rgba(34,197,94,0.12);
+    --green-glow: rgba(34,197,94,0.08);
+    --text: #f0f4f1;
+    --muted: rgba(240,244,241,0.45);
+    --muted2: rgba(240,244,241,0.25);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(34,197,94,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,197,94,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Radial glow center */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(34,197,94,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .app {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 56px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 34px;
+    height: 34px;
+    background: var(--green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-mark svg { width: 18px; height: 18px; }
+
+  .nav-logo-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid rgba(34,197,94,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* HERO */
+  .hero { margin-bottom: 52px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+
+  h1 .accent { color: var(--green); }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* FORM */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(34,197,94,0.4), transparent);
+  }
+
+  .field-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .url-wrapper {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .url-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted2);
+    pointer-events: none;
+  }
+
+  input[type="url"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 14px 16px 14px 44px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  input[type="url"]::placeholder { color: var(--muted2); }
+
+  input[type="url"]:focus {
+    border-color: rgba(34,197,94,0.5);
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.08);
+  }
+
+  .options-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
+
+  .opt {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .opt input { display: none; }
+
+  .opt-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s, background 0.2s;
+    user-select: none;
+  }
+
+  .opt input:checked + .opt-inner {
+    border-color: rgba(34,197,94,0.4);
+    background: var(--green-dim);
+  }
+
+  .opt-inner:hover { border-color: var(--border-hover); }
+
+  .opt-check {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface2);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .opt input:checked + .opt-inner .opt-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .opt-check svg { opacity: 0; transition: opacity 0.15s; }
+  .opt input:checked + .opt-inner .opt-check svg { opacity: 1; }
+
+  .opt-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .opt-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .btn-generate {
+    width: 100%;
+    padding: 16px;
+    background: var(--green);
+    color: #080b09;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-generate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+  }
+
+  .btn-generate:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-generate:active { transform: translateY(0); }
+  .btn-generate:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* LOADING */
+  #loading {
+    display: none;
+    text-align: center;
+    padding: 64px 0;
+  }
+
+  .loading-ring {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-label {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .loading-sub {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* RESULTS */
+  #results { display: none; }
+
+  .results-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .product-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 14px 8px 10px;
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 100%;
+  }
+
+  .product-pill span {
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+
+  .product-dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .btn-reset {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-reset:hover { border-color: var(--border-hover); color: var(--text); }
+
+  .results-count {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .results-count .n { color: var(--green); }
+  .results-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+  /* ANGLE CARD */
+  .angle-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .angle-card:hover { border-color: rgba(34,197,94,0.2); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .angle-head {
+    padding: 22px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .angle-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted2);
+    letter-spacing: 0.1em;
+    padding-top: 3px;
+    flex-shrink: 0;
+    width: 24px;
+  }
+
+  .angle-content { flex: 1; min-width: 0; }
+
+  .angle-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .type-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .t-pain    { background: rgba(239,68,68,0.12);  color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+  .t-social  { background: rgba(34,197,94,0.12);  color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+  .t-curiosidad { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+  .t-autoridad  { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.2); }
+  .t-transformacion { background: rgba(234,179,8,0.12); color: #facc15; border: 1px solid rgba(234,179,8,0.2); }
+
+  .angle-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .angle-hook {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 2px solid rgba(34,197,94,0.3);
+    padding-left: 12px;
+  }
+
+  .angle-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 0.03em;
+  }
+
+  .angle-toggle svg { transition: transform 0.2s; }
+  .angle-card.open .angle-toggle svg { transform: rotate(180deg); }
+
+  .angle-expand {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .angle-card.open .angle-expand { display: block; }
+
+  .script-wrap { padding: 24px; }
+
+  .script-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .script-step {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+
+  .step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .step-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .step-line {
+    width: 1px;
+    flex: 1;
+    background: var(--border);
+    margin: 4px 0;
+    min-height: 24px;
+  }
+
+  .script-step:last-child .step-line { display: none; }
+
+  .step-content { padding-bottom: 24px; }
+  .script-step:last-child .step-content { padding-bottom: 0; }
+
+  .step-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 6px;
+  }
+
+  .step-timing {
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 0.05em;
+    margin-left: 8px;
+    font-weight: 500;
+  }
+
+  .step-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ERROR */
+  .error-box {
+    background: rgba(239,68,68,0.07);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #f87171;
+    margin-top: 16px;
+    display: none;
+  }
+
+  /* CTA */
+  .cta-card {
+    background: var(--surface);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    margin-top: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(34,197,94,0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-heading {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .cta-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 22px;
+    line-height: 1.55;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: #080b09;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 64px;
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted2);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--muted2);
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav>
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 1.5L16 14.5H2L9 1.5Z" fill="#080b09"/>
+        </svg>
+      </div>
+      <span class="nav-logo-name">Ecom Group</span>
+    </a>
+    <span class="nav-badge">Beta</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Generador con IA</div>
+    <h1>Ideas de anuncios<br>que <span class="accent">convierten.</span></h1>
+    <p class="hero-desc">Pegá la URL de tu producto y la IA analiza tu oferta para generar ángulos creativos y guiones de video listos para grabar en Meta Ads.</p>
+  </div>
+
+  <!-- FORM -->
+  <div id="form-section">
+    <div class="form-card">
+      <label class="field-label" for="url-in">URL del producto</label>
+      <div class="url-wrapper">
+        <span class="url-icon">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+          </svg>
+        </span>
+        <input type="url" id="url-in" placeholder="https://tutienda.com/producto" autocomplete="off" />
+      </div>
+
+      <label class="options-label">¿Qué querés generar?</label>
+      <div class="options-grid">
+        <label class="opt">
+          <input type="checkbox" id="opt-angles" checked />
+          <div class="opt-inner">
+            <div class="opt-check">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="#080b09" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="opt-title">Ángulos creativos</div>
+            <div class="opt-desc">Pain, curiosidad, autoridad, social proof y transformación</div>
+          </div>
+        </label>
+        <label class="opt">
+          <input type="checkbox" id="opt-scripts" checked />
+          <div class="opt-inner">
+            <div class="opt-check">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="#080b09" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="opt-title">Guiones de video</div>
+            <div class="opt-desc">Hook → desarrollo → CTA, listo para grabar</div>
+          </div>
+        </label>
+      </div>
+
+      <button class="btn-generate" id="gen-btn" onclick="generate()">
+        Generar ideas →
+      </button>
+      <div class="error-box" id="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading">
+    <div class="loading-ring"></div>
+    <div class="loading-label" id="loading-label">Analizando tu producto...</div>
+    <div class="loading-sub" id="loading-sub">Esto tarda unos segundos</div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results">
+    <div class="results-header">
+      <div class="product-pill">
+        <div class="product-dot"></div>
+        Producto: <span id="product-name-pill">—</span>
+      </div>
+      <button class="btn-reset" onclick="resetApp()">← Analizar otro</button>
+    </div>
+
+    <div class="results-count"><span class="n" id="count-num">0</span> ideas generadas</div>
+    <div class="results-sub" id="product-desc-line"></div>
+
+    <div id="angles-list"></div>
+
+    <div class="cta-card">
+      <div class="cta-heading">¿Querés implementar estas ideas?</div>
+      <p class="cta-sub">Reservá una llamada gratuita con nuestro equipo y te mostramos cómo escalar tu tienda con Meta Ads.</p>
+      <a class="btn-cta" href="https://calendly.com/admissionsprocess/llamada-de-discovery" target="_blank">
+        Reservar llamada gratuita
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M7 17L17 7M7 7h10v10"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+  const loadingMessages = [
+    ['Analizando tu producto...', 'Leyendo la página de tu tienda'],
+    ['Identificando el público objetivo...', 'Analizando propuesta de valor'],
+    ['Generando ángulos creativos...', 'Aplicando framework de copywriting'],
+    ['Armando los guiones...', 'Hook → Desarrollo → CTA'],
+    ['Revisando últimos detalles...', 'Ya casi está'],
+  ];
+
+  let loadingInterval;
+
+  function startLoadingMessages() {
+    let i = 0;
+    const label = document.getElementById('loading-label');
+    const sub = document.getElementById('loading-sub');
+    label.textContent = loadingMessages[0][0];
+    sub.textContent = loadingMessages[0][1];
+    loadingInterval = setInterval(() => {
+      i = (i + 1) % loadingMessages.length;
+      label.textContent = loadingMessages[i][0];
+      sub.textContent = loadingMessages[i][1];
+    }, 2200);
+  }
+
+  function stopLoadingMessages() {
+    clearInterval(loadingInterval);
+  }
+
+  function badgeClass(type) {
+    const map = {
+      'pain': 't-pain',
+      'social proof': 't-social',
+      'curiosidad': 't-curiosidad',
+      'autoridad': 't-autoridad',
+      'transformación': 't-transformacion',
+      'transformacion': 't-transformacion',
+    };
+    return map[(type || '').toLowerCase()] || 't-social';
+  }
+
+  function toggleCard(card) {
+    card.classList.toggle('open');
+    const toggleText = card.querySelector('.toggle-text');
+    if (toggleText) {
+      toggleText.textContent = card.classList.contains('open') ? 'Ocultar guión' : 'Ver guión completo';
+    }
+  }
+
+  function renderResults(data) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+
+    document.getElementById('product-name-pill').textContent = data.productName || 'Producto';
+    document.getElementById('count-num').textContent = data.angles.length;
+    document.getElementById('product-desc-line').textContent = data.productDescription || '';
+
+    const list = document.getElementById('angles-list');
+    list.innerHTML = '';
+
+    data.angles.forEach((angle, i) => {
+      const hasScript = angle.script && (angle.script.hook || angle.script.body || angle.script.cta);
+      const card = document.createElement('div');
+      card.className = 'angle-card';
+      card.style.animationDelay = (i * 0.08) + 's';
+
+      card.innerHTML = `
+        <div class="angle-head" onclick="toggleCard(this.parentElement)">
+          <div class="angle-num">0${i + 1}</div>
+          <div class="angle-content">
+            <div class="angle-meta">
+              <span class="type-badge ${badgeClass(angle.type)}">${angle.type}</span>
+            </div>
+            <div class="angle-title">${angle.title}</div>
+            <div class="angle-hook">"${angle.hook}"</div>
+            ${hasScript ? `
+            <div class="angle-toggle">
+              <span class="toggle-text">Ver guión completo</span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </div>` : ''}
+          </div>
+        </div>
+        ${hasScript ? `
+        <div class="angle-expand">
+          <div class="script-wrap">
+            <div class="script-steps">
+              <div class="script-step">
+                <div class="step-indicator">
+                  <div class="step-dot">01</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-content">
+                  <div class="step-tag">Hook <span class="step-timing">0 – 3 seg</span></div>
+                  <div class="step-text">${angle.script.hook}</div>
+                </div>
+              </div>
+              <div class="script-step">
+                <div class="step-indicator">
+                  <div class="step-dot">02</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-content">
+                  <div class="step-tag">Desarrollo <span class="step-timing">4 – 20 seg</span></div>
+                  <div class="step-text">${angle.script.body}</div>
+                </div>
+              </div>
+              <div class="script-step">
+                <div class="step-indicator">
+                  <div class="step-dot">03</div>
+                </div>
+                <div class="step-content">
+                  <div class="step-tag">CTA <span class="step-timing">últimos 5 seg</span></div>
+                  <div class="step-text">${angle.script.cta}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>` : ''}
+      `;
+
+      list.appendChild(card);
+    });
+  }
+
+  function showError(msg) {
+    const box = document.getElementById('error-msg');
+    box.textContent = msg;
+    box.style.display = 'block';
+  }
+
+  function resetApp() {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('form-section').style.display = 'block';
+    document.getElementById('url-in').value = '';
+    document.getElementById('error-msg').style.display = 'none';
+    document.getElementById('gen-btn').disabled = false;
+    document.getElementById('gen-btn').textContent = 'Generar ideas →';
+  }
+
+  async function generate() {
+    const url = document.getElementById('url-in').value.trim();
+    if (!url || !url.startsWith('http')) {
+      showError('Ingresá una URL válida (debe comenzar con https://).');
+      return;
+    }
+
+    const wantScripts = document.getElementById('opt-scripts').checked;
+
+    document.getElementById('error-msg').style.display = 'none';
+    document.getElementById('gen-btn').disabled = true;
+    document.getElementById('gen-btn').textContent = 'Generando...';
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+
+    startLoadingMessages();
+
+    const scriptFields = wantScripts
+      ? '"script": { "hook": "guion del hook para los primeros 3 segundos, directo y sin rodeos", "body": "desarrollo de 15 a 20 segundos: agrava el problema y presenta la solucion en lenguaje coloquial rioplatense", "cta": "llamada a la accion de 5 segundos, clara y urgente" }'
+      : '"script": null';
+
+    const prompt = 'Sos un experto senior en Meta Ads para e-commerce. Analiza este producto con web search: ' + url + '\n\n' +
+      'Devuelve UNICAMENTE un objeto JSON valido. Sin markdown, sin bloques de codigo, sin texto antes ni despues del JSON. Solo el JSON crudo.\n\n' +
+      'El JSON debe tener exactamente esta forma:\n' +
+      '{ "productName": "nombre del producto", "productDescription": "descripcion breve en 1 oracion", "angles": [ { "title": "titulo del angulo maximo 6 palabras", "type": "Pain", "hook": "hook impactante en una oracion en espanol rioplatense", ' + scriptFields + ' }, { "title": "titulo", "type": "Social Proof", "hook": "hook", ' + scriptFields + ' }, { "title": "titulo", "type": "Curiosidad", "hook": "hook", ' + scriptFields + ' }, { "title": "titulo", "type": "Autoridad", "hook": "hook", ' + scriptFields + ' }, { "title": "titulo", "type": "Transformacion", "hook": "hook", ' + scriptFields + ' } ] }\n\n' +
+      'Reglas: 5 angulos, uno por tipo. Hooks directos sin cliches. Espanol rioplatense natural. No uses comillas dobles dentro de los valores de texto, usa comillas simples si necesitas. SOLO el JSON, nada mas.';
+
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 4000,
+          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      stopLoadingMessages();
+
+      if (!res.ok) throw new Error('API error ' + res.status);
+
+      const data = await res.json();
+
+      // Buscar el bloque de texto final (puede haber tool_use intermedios)
+      const textBlocks = (data.content || []).filter(b => b.type === 'text');
+      if (!textBlocks.length) throw new Error('Sin texto en la respuesta');
+
+      // Tomar el último bloque de texto (el que tiene el JSON final)
+      const raw = textBlocks[textBlocks.length - 1].text;
+
+      // Limpiar markdown si lo hay
+      const cleaned = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+
+      // Extraer el objeto JSON más externo
+      const start = cleaned.indexOf('{');
+      const end = cleaned.lastIndexOf('}');
+      if (start === -1 || end === -1) throw new Error('JSON no encontrado en la respuesta');
+
+      const jsonStr = cleaned.slice(start, end + 1);
+      const parsed = JSON.parse(jsonStr);
+
+      if (!parsed.angles || !Array.isArray(parsed.angles)) throw new Error('Estructura de JSON inválida');
+
+      document.getElementById('loading').style.display = 'none';
+      renderResults(parsed);
+
+    } catch (err) {
+      stopLoadingMessages();
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('form-section').style.display = 'block';
+      document.getElementById('gen-btn').disabled = false;
+      document.getElementById('gen-btn').textContent = 'Generar ideas →';
+      showError('No se pudo analizar el producto. Asegurate de que la URL sea pública y volvé a intentar. (' + err.message + ')');
+      console.error(err);
+    }
+  }
+
+  document.getElementById('url-in').addEventListener('keydown', e => {
+    if (e.key === 'Enter') generate();
+  });
+</script>
+</body>
+</html>
